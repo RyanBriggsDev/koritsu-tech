@@ -11,8 +11,10 @@ function Hero() {
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
             a id nisi.
           </p>
-          <button className="btn btn-primary">Login</button>
-          <button className="btn btn-primary">Create an Account</button>
+          <div className="flex flex-wrap gap-4 justify-center items-center">
+            <button className="btn btn-primary">Login</button>
+            <button className="btn btn-secondary">Create an Account</button>
+          </div>
         </div>
       </div>
     </div>

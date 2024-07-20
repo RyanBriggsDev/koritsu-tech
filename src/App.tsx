@@ -6,7 +6,6 @@ import Hero from "./components/layout/Hero";
 function App() {
   return (
     <>
-      <Nav />
       <Hero />
     </>
   );

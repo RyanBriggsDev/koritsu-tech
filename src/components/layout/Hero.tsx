@@ -1,4 +1,4 @@
-import React from "react";
+import Button from "../small/Button";
 
 function Hero() {
   return (
@@ -6,14 +6,17 @@ function Hero() {
       <div className="hero-content text-center">
         <div className="max-w-md">
           <h1 className="text-5xl font-bold">Koritsu.tech</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+          <p className="py-6 max-w-1/2">
+            The Heartbeat of High-Performing Agencies. Unifying Clients, Teams,
+            and Workflows. Powering Growth Through Seamless Integration.
           </p>
           <div className="flex flex-wrap gap-4 justify-center items-center">
-            <button className="btn btn-primary">Login</button>
-            <button className="btn btn-secondary">Create an Account</button>
+            <Button to="/login" className="btn btn-primary">
+              Login
+            </Button>
+            <Button to="/sign-up" className="btn btn-secondary">
+              Create an Account
+            </Button>
           </div>
         </div>
       </div>

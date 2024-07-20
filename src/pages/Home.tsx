@@ -1,10 +1,9 @@
-import React from "react";
+import Hero from "../components/layout/Hero";
 
 const Home: React.FC = () => {
   return (
     <div>
-      <h1>Welcome to the Home Page</h1>
-      {/* Add your home page content here */}
+      <Hero />
     </div>
   );
 };

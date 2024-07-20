@@ -1,12 +1,14 @@
-import "./App.css";
-import "./index.css";
+import { Suspense } from "react";
+import { Outlet } from "react-router-dom";
 import Nav from "./components/layout/Nav";
-import Hero from "./components/layout/Hero";
 
 function App() {
   return (
     <>
-      <Hero />
+      <Nav />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 }

@@ -1,5 +1,6 @@
 type Props = {};
 import { NavLink } from "react-router-dom";
+import ThemeToggle from "../functional/ThemeToggle";
 
 function Nav({}: Props) {
   return (
@@ -42,6 +43,9 @@ function Nav({}: Props) {
               </li>
               <li>
                 <NavLink to="/support">Support</NavLink>
+              </li>
+              <li>
+                <ThemeToggle />
               </li>
             </ul>
           </div>

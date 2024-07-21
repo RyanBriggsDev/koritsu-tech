@@ -6,7 +6,9 @@ const Home = React.lazy(() => import("../pages/Home"));
 const Contact = React.lazy(() => import("../pages/Contact"));
 const Login = React.lazy(() => import("../pages/Login"));
 const SignUp = React.lazy(() => import("../pages/SignUp"));
-const Account = React.lazy(() => import("../pages/Account"));
+const AccountProfile = React.lazy(
+  () => import("../pages/account/AccountProfile")
+);
 const Support = React.lazy(() => import("../pages/Support"));
 const Services = React.lazy(() => import("../pages/Services"));
 const Pricing = React.lazy(() => import("../pages/Pricing"));
@@ -21,7 +23,7 @@ export const routes: RouteObject[] = [
       { path: "contact", element: <Contact /> },
       { path: "login", element: <Login /> },
       { path: "sign-up", element: <SignUp /> },
-      { path: "account", element: <Account /> },
+      { path: "account/profile", element: <AccountProfile /> },
       { path: "support", element: <Support /> },
       { path: "services", element: <Services /> },
       { path: "pricing", element: <Pricing /> },

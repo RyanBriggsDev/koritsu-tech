@@ -29,7 +29,7 @@ function Button({
   const disabledClass = disabled ? "btn-disabled" : "";
 
   const buttonClasses =
-    `${baseClasses} ${variantClass} ${sizeClass} ${outlineClass} ${disabledClass} ${className}`.trim();
+    `cursor-pointer ${baseClasses} ${variantClass} ${sizeClass} ${outlineClass} ${disabledClass} ${className}`.trim();
 
   if (to) {
     return (

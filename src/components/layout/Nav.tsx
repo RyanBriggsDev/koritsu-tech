@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import NavIcon from "../account/NavIcon";
+import NavAccountIcon from "../account/NavAccountIcon";
 
 type Props = {};
 
@@ -31,11 +31,8 @@ function Nav({}: Props) {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-md z-[1] mt-3 w-52 p-1 shadow"
             >
-              <li>
-                <NavLink to="/account">Account</NavLink>
-              </li>
               <li>
                 <NavLink to="/services">Services</NavLink>
               </li>
@@ -73,14 +70,7 @@ function Nav({}: Props) {
               <span className="badge badge-xs badge-primary indicator-item"></span>
             </div>
           </button>
-          <NavIcon />
-          {/* <button className="btn btn-ghost btn-circle">
-            <div className="avatar placeholder">
-              <div className="bg-neutral text-neutral-content w-8 rounded-full">
-                <span className="text-xs">UI</span>
-              </div>
-            </div>
-          </button> */}
+          <NavAccountIcon />
         </div>
       </div>
     </>

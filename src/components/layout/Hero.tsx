@@ -11,10 +11,10 @@ function Hero() {
             and Workflows. Powering Growth Through Seamless Integration.
           </p>
           <div className="flex flex-wrap gap-4 justify-center items-center">
-            <Button to="/login" className="btn btn-primary">
+            <Button to="/account/login" className="btn btn-primary">
               Login
             </Button>
-            <Button to="/sign-up" className="btn btn-secondary">
+            <Button to="/account/sign-up" className="btn btn-secondary">
               Create an Account
             </Button>
           </div>

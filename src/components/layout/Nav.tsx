@@ -46,7 +46,7 @@ function Nav({}: Props) {
           </div>
         </div>
         <div className="navbar-center">
-          <NavLink className="btn btn-ghost text-xl" to="/">
+          <NavLink className="btn btn-ghost text-xl cursor-pointer" to="/">
             Koritsu.tech
           </NavLink>
         </div>

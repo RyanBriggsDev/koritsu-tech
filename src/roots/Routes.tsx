@@ -5,7 +5,7 @@ import App from "../App";
 const Home = React.lazy(() => import("../pages/Home"));
 const Contact = React.lazy(() => import("../pages/Contact"));
 const AccountLogin = React.lazy(() => import("../components/forms/Login"));
-const SignUp = React.lazy(() => import("../pages/SignUp"));
+const Register = React.lazy(() => import("../components/forms/Register"));
 const AccountProfile = React.lazy(
   () => import("../pages/account/AccountProfile")
 );
@@ -22,8 +22,8 @@ export const routes: RouteObject[] = [
       { index: true, element: <Home /> },
       { path: "contact", element: <Contact /> },
       { path: "account/login", element: <AccountLogin /> },
-      { path: "sign-up", element: <SignUp /> },
-      { path: "account/profile", element: <AccountProfile /> },
+      { path: "account/sign-up", element: <Register /> },
+      { path: "account", element: <AccountProfile /> },
       { path: "support", element: <Support /> },
       { path: "services", element: <Services /> },
       { path: "pricing", element: <Pricing /> },

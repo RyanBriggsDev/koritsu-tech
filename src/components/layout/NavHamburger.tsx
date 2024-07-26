@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Button from "../small/Button";
+import NavHamburgerIcon from "./NavHamburgerIcon";
 import { Link } from "react-router-dom";
 
 interface NavHamburgerLink {
@@ -31,17 +32,17 @@ function NavHamburger() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div className="relative" ref={dropdownRef}>
       <Button
-        className="btn btn-ghost btn-circle"
-        onClick={() => setIsOpen(!isOpen)}
+        className="btn btn-ghost btn-circle p-1 w-12 h-12"
+        onClick={toggleMenu}
       >
-        <div className="avatar placeholder">
-          <div className="bg-neutral text-neutral-content w-8 rounded-full">
-            <span className="text-xs">RB</span>
-          </div>
-        </div>
+        <NavHamburgerIcon isActive={isOpen} />
       </Button>
       {isOpen && (
         <div className="absolute left-0 mt-3 w-48 rounded-md shadow-lg bg-base-100 ring-1 ring-base-content ring-opacity-5">

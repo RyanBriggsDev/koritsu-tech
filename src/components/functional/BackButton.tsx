@@ -8,7 +8,7 @@ const BackButton: React.FC = () => {
   const path = location.pathname;
 
   const handleBackClick = () => {
-    if (path === "/") return; // Don't render on the homepage
+    if (path === "/") return;
 
     const segments = path.split("/").filter(Boolean);
     if (segments.length > 1) {
@@ -19,7 +19,7 @@ const BackButton: React.FC = () => {
     }
   };
 
-  if (path === "/") return null; // Don't render on the homepage
+  if (path === "/") return null;
 
   return (
     <Button

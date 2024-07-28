@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { useLogin } from "../../hooks/useLogin";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [remember, setRemember] = useState(false);
+  const [isLoading, errorMessage, login] = useLogin();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -13,13 +14,9 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const handleRememberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRemember(e.target.checked);
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log({ email, password, remember });
+    await login(email, password);
   };
 
   return (
@@ -31,6 +28,7 @@ const Login = () => {
               Sign in to your account
             </h1>
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+              {errorMessage && <p className="text-red-500">{errorMessage}</p>}
               <div>
                 <label
                   htmlFor="email"
@@ -46,7 +44,7 @@ const Login = () => {
                   placeholder="name@company.com"
                   required
                   value={email}
-                  onChange={handleEmailChange}
+                  onChange={handleEmailChange} // Add a comma here
                 />
               </div>
               <div>
@@ -67,39 +65,15 @@ const Login = () => {
                   onChange={handlePasswordChange}
                 />
               </div>
-              <div className="flex gap-2 md:items-center justify-between flex-col md:flex-row md:flex-wrap">
-                <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input
-                      id="remember"
-                      aria-describedby="remember"
-                      type="checkbox"
-                      className="w-4 h-4 border border-secondary rounded bg-secondary focus:ring-3 focus:ring-primary"
-                      checked={remember}
-                      onChange={handleRememberChange}
-                    />
-                  </div>
-                  <div className="ml-3 text-sm">
-                    <label htmlFor="remember" className="text-neutral">
-                      Remember me
-                    </label>
-                  </div>
-                </div>
-                <a
-                  href="#"
-                  className="text-sm font-medium text-primary hover:underline"
-                >
-                  Forgot password?
-                </a>
-              </div>
               <button
                 type="submit"
                 className="w-full text-white bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                disabled={isLoading}
               >
-                Sign in
+                {isLoading ? "Signing in..." : "Sign in"}
               </button>
               <p className="text-sm font-light text-neutral">
-                Don’t have an account yet?{" "}
+                Don't have an account yet?{" "}
                 <a
                   href="#"
                   className="font-medium text-primary hover:underline"

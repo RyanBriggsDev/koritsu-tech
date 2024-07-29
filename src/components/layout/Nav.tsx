@@ -1,52 +1,18 @@
 import { NavLink } from "react-router-dom";
 import NavAccountIcon from "../account/NavAccountIcon";
+import NavHamburger from "./NavHamburger";
 
 type Props = {};
 
 function Nav({}: Props) {
   return (
     <>
-      <div className="navbar fixed top-0 left-0 right-0 bg-base-100">
+      <div className="navbar fixed top-0 left-0 right-0 bg-base-100 z-50">
         <div className="navbar-start">
-          <div className="dropdown">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h7"
-                />
-              </svg>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-md z-[1] mt-3 w-52 p-1 shadow"
-            >
-              <li>
-                <NavLink to="/services">Services</NavLink>
-              </li>
-              <li>
-                <NavLink to="/pricing">Pricing</NavLink>
-              </li>
-              <li>
-                <NavLink to="/support">Support</NavLink>
-              </li>
-            </ul>
-          </div>
+          <NavHamburger />
         </div>
         <div className="navbar-center">
-          <NavLink className="btn btn-ghost text-xl" to="/">
+          <NavLink className="btn btn-ghost text-xl cursor-pointer" to="/">
             Koritsu.tech
           </NavLink>
         </div>

@@ -1,5 +1,9 @@
 function AccountProfile() {
-  return <div>AccountProfile</div>;
+  return (
+    <div className="min-h-screen flex justify-center items-center">
+      <h1>AccountProfile</h1>
+    </div>
+  );
 }
 
 export default AccountProfile;

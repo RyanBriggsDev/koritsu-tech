@@ -26,7 +26,7 @@ export function useLogin(): [
       if (response.ok) {
         const data = await response.json();
         console.log("Login successful:", data);
-        // Navigate or update state as needed
+        // Navigate or update state as needed;
         navigate("/account");
       } else {
         setErrorMessage("Login failed");

@@ -1,6 +1,5 @@
 import "dotenv/config";
 import express, { Request, Response, NextFunction } from "express";
-import cors from "cors";
 import { login, register } from "./routes/users";
 
 const app = express();
@@ -12,14 +11,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// CORS configuration
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    credentials: true,
-  })
-);
-
 // Body parsing middleware
 app.use(express.json());
 
@@ -27,11 +18,6 @@ app.use(express.json());
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
-});
-
-// Routes
-app.get("/api/test", (req: Request, res: Response) => {
-  res.json({ message: "CORS is working" });
 });
 
 // Login
@@ -48,3 +34,5 @@ app.post("/api/register", async (req: Request, res: Response) => {
 app.listen(PORT, () => {
   console.log(`API is running on http://localhost:${PORT}`);
 });
+
+module.exports = app;

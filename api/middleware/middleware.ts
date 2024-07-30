@@ -21,7 +21,3 @@ const middleware = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 export default middleware;
-
-//   app.get("/api/info", (req: Request, res: Response) => {
-//     return res.json({ message: "Hello, world!" });
-//   });

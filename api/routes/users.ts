@@ -10,25 +10,40 @@ export const login = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
     console.log(email, password);
+
     // Take email and look up user
     const data: User[] = await db
       .select()
       .from(users)
       .where(eq(users.email, email));
-    if (!data) return res.status(404).json({ error: "User not found" });
+
+    if (data.length === 0)
+      return res.status(404).json({ error: "User not found" });
+
+    const user = data[0];
+
     // If user exists, check password
-    const matched = bcrypt.compareSync(password, data[0].password as string);
+    const matched = bcrypt.compareSync(password, user.password as string);
     if (!matched) return res.status(401).json({ error: "Invalid password" });
-    // If password matches, return token
+
+    // If password matches, create token and prepare user data
     const token = jwt.sign(
       {
-        id: data[0].id,
-        accountId: data[0].accountId,
+        id: user.id,
+        accountId: user.accountId,
         exp: Math.floor(Date.now() / 1000) + 24 * (60 * 60),
       },
       process.env.JWT_SECRET!
     );
-    return res.json({ token });
+
+    // Prepare user data to return, excluding sensitive information
+    const userData = {
+      email: user.email,
+      name: user.name,
+      // Add any other non-sensitive fields you want to return
+    };
+
+    return res.json({ token, user: userData });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });

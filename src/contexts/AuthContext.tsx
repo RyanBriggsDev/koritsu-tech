@@ -1,13 +1,19 @@
 import React, { createContext, useReducer, useContext, useEffect } from "react";
 
+type User = {
+  email: string;
+  name: string;
+};
+
 type AuthState = {
   isAuthenticated: boolean;
   token: string | null;
+  user: User | null;
   isLoading: boolean;
 };
 
 type AuthAction =
-  | { type: "LOGIN"; payload: string }
+  | { type: "LOGIN"; payload: { token: string; user: User } }
   | { type: "LOGOUT" }
   | { type: "SET_AUTH_STATE"; payload: Omit<AuthState, "isLoading"> }
   | { type: "SET_LOADING"; payload: boolean };
@@ -20,6 +26,7 @@ type AuthContextType = {
 const initialState: AuthState = {
   isAuthenticated: false,
   token: null,
+  user: null,
   isLoading: true,
 };
 
@@ -31,7 +38,8 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
       return {
         ...state,
         isAuthenticated: true,
-        token: action.payload,
+        token: action.payload.token,
+        user: action.payload.user,
         isLoading: false,
       };
     case "LOGOUT":
@@ -39,6 +47,7 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
         ...state,
         isAuthenticated: false,
         token: null,
+        user: null,
         isLoading: false,
       };
     case "SET_AUTH_STATE":
@@ -50,15 +59,17 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
   }
 };
 
-const checkAuth = () => {
+const checkAuth = (): Omit<AuthState, "isLoading"> => {
   const tokenData = localStorage.getItem("authToken");
-  if (tokenData) {
+  const userData = localStorage.getItem("userData");
+  if (tokenData && userData) {
     const { token, expiryTime } = JSON.parse(tokenData);
+    const user = JSON.parse(userData);
     if (new Date().getTime() < expiryTime) {
-      return { isAuthenticated: true, token };
+      return { isAuthenticated: true, token, user };
     }
   }
-  return { isAuthenticated: false, token: null };
+  return { isAuthenticated: false, token: null, user: null };
 };
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -75,7 +86,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       if (currentAuthState.isAuthenticated !== state.isAuthenticated) {
         dispatch({ type: "SET_AUTH_STATE", payload: currentAuthState });
       }
-    }, 6000000); // Check every minute
+    }, 60000); // Check every minute
 
     return () => clearInterval(interval);
   }, []);
@@ -96,4 +107,3 @@ export const useAuth = () => {
 };
 
 export default AuthContext;
-``;

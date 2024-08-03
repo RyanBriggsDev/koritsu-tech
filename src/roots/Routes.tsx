@@ -22,7 +22,10 @@ export const routes: RouteObject[] = [
     children: [
       { index: true, element: <Home /> },
       { path: "contact", element: <Contact /> },
-      { path: "account/login", element: <AccountLogin /> },
+      {
+        path: "account/login",
+        element: <AccountLogin />,
+      },
       { path: "account/sign-up", element: <Register /> },
       {
         path: "account",

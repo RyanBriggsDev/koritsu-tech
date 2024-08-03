@@ -34,7 +34,12 @@ export function useLogin(): [
           "authToken",
           JSON.stringify({ token: data.token, expiryTime })
         );
-        dispatch({ type: "LOGIN", payload: data.token });
+        localStorage.setItem("userData", JSON.stringify(data.user));
+
+        dispatch({
+          type: "LOGIN",
+          payload: { token: data.token, user: data.user },
+        });
 
         navigate("/account");
       } else {

@@ -10,7 +10,6 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const location = useLocation();
 
   if (state.isLoading) {
-    // You can return a loading spinner or null here
     return <div>Loading...</div>;
   }
 

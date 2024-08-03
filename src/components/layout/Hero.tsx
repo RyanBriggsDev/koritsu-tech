@@ -1,6 +1,8 @@
 import Button from "../small/Button";
+import { useAuth } from "../../contexts/AuthContext";
 
 function Hero() {
+  const { state } = useAuth();
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content text-center">
@@ -11,12 +13,20 @@ function Hero() {
             and Workflows. Powering Growth Through Seamless Integration.
           </p>
           <div className="flex flex-wrap gap-4 justify-center items-center">
-            <Button to="/account/login" className="btn btn-primary">
-              Login
-            </Button>
-            <Button to="/account/sign-up" className="btn btn-secondary">
-              Create an Account
-            </Button>
+            {state.isAuthenticated ? (
+              <Button to="/account" className="btn btn-primary">
+                View your Dashboard
+              </Button>
+            ) : (
+              <>
+                <Button to="/account/login" className="btn btn-primary">
+                  Login
+                </Button>
+                <Button to="/account/sign-up" className="btn btn-secondary">
+                  Create an Account
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </div>

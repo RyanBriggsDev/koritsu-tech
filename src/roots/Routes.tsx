@@ -1,7 +1,6 @@
 import React from "react";
 import { RouteObject } from "react-router-dom";
 import App from "../App";
-import ProtectedRoute from "../components/functional/ProtectedRoute";
 
 const Home = React.lazy(() => import("../pages/Home"));
 const Contact = React.lazy(() => import("../pages/Contact"));
@@ -29,11 +28,7 @@ export const routes: RouteObject[] = [
       { path: "account/sign-up", element: <Register /> },
       {
         path: "account",
-        element: (
-          <ProtectedRoute>
-            <AccountProfile />
-          </ProtectedRoute>
-        ),
+        element: <AccountProfile />,
       },
       { path: "support", element: <Support /> },
       { path: "services", element: <Services /> },

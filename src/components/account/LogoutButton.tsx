@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 interface LogoutButtonProps {
   onLogout: () => void;
@@ -7,11 +8,13 @@ interface LogoutButtonProps {
 
 const LogoutButton: React.FC<LogoutButtonProps> = ({ onLogout }) => {
   const { dispatch } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
     localStorage.removeItem("authToken");
     localStorage.removeItem("userData");
+    navigate("/");
     onLogout();
   };
 

@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express, { Request, Response, NextFunction } from "express";
 import { login, register } from "./routes/users";
+import middleware from "./middleware/middleware";
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -13,6 +14,14 @@ app.use((req, res, next) => {
 
 // Body parsing middleware
 app.use(express.json());
+
+// Middleware
+app.use((req, res, next) => {
+  if (req.path === "/api/login" || req.path === "/api/register") {
+    return next();
+  }
+  middleware(req, res, next);
+});
 
 // Error handling middleware
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
@@ -28,6 +37,11 @@ app.post("/api/login", async (req: Request, res: Response) => {
 // Register
 app.post("/api/register", async (req: Request, res: Response) => {
   register(req, res);
+});
+
+// Dummy protected route
+app.get("/api/protected", (req: Request, res: Response) => {
+  res.json({ message: "This is a protected route" });
 });
 
 // Start server

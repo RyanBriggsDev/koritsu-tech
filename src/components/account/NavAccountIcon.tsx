@@ -8,7 +8,7 @@ interface AccountLink {
 }
 
 const accountLinks: AccountLink[] = [
-  { label: "Profile", href: "/account/profile" },
+  { label: "Profile", href: "/account" },
   { label: "Settings", href: "account/settings" },
   { label: "Logout", href: "account/logout" },
 ];

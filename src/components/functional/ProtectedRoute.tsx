@@ -1,7 +1,6 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
-
 interface ProtectedRouteProps {
   children: React.ReactNode;
 }
@@ -9,6 +8,11 @@ interface ProtectedRouteProps {
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const { state } = useAuth();
   const location = useLocation();
+
+  if (state.isLoading) {
+    // You can return a loading spinner or null here
+    return <div>Loading...</div>;
+  }
 
   if (!state.isAuthenticated) {
     return <Navigate to="/account/login" state={{ from: location }} replace />;

@@ -40,6 +40,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
+  let intervalTime = 6000000;
+
   useEffect(() => {
     const checkAuth = () => {
       const tokenData = localStorage.getItem("authToken");
@@ -58,7 +60,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     };
 
     checkAuth();
-    const interval = setInterval(checkAuth, 60000);
+    const interval = setInterval(checkAuth, intervalTime);
 
     return () => clearInterval(interval);
   }, []);

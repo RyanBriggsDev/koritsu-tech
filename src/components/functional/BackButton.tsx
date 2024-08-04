@@ -9,7 +9,7 @@ const BackButton: React.FC = () => {
 
   const handleBackClick = () => {
     if (path === "/") return;
-    if (path === "/account/login") {
+    if (path === "/account/login" || path === "/account/sign-up") {
       navigate("/");
       return;
     }

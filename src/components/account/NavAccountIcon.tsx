@@ -3,6 +3,7 @@ import Button from "../small/Button";
 import { Link } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
 import { useAuth } from "../../contexts/AuthContext";
+import BoxIcon from "../small/BoxIcon";
 
 interface AccountLink {
   label: string;
@@ -34,6 +35,19 @@ function NavAccountIcon() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
   if (state.isAuthenticated) {
+    function getInitials(name: string | undefined): string {
+      let initials = name?.split(" ");
+      let firstWord = initials?.[0];
+      let lastWord = initials?.[initials.length - 1];
+      let firstLetter = firstWord?.charAt(0);
+      let lastLetter = lastWord?.charAt(0);
+      let initialsString = `${firstLetter}${lastLetter}`;
+      return initialsString;
+    }
+
+    // Usage:
+    let initials = getInitials(state.user?.name);
+
     return (
       <div className="relative" ref={dropdownRef}>
         <Button
@@ -42,7 +56,13 @@ function NavAccountIcon() {
         >
           <div className="avatar placeholder">
             <div className="bg-neutral text-neutral-content w-8 rounded-full">
-              <span className="text-xs">RB</span>
+              <span className="text-xs">
+                {initials ? (
+                  initials
+                ) : (
+                  <BoxIcon type="bx-user bg bg-neutral" size="20px" />
+                )}
+              </span>
             </div>
           </div>
         </Button>

@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useCreateUser } from "../../hooks/useCreateUser";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isLoading, errorMessage, createUser] = useCreateUser();
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -24,13 +26,9 @@ const Register = () => {
     setConfirmPassword(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      alert("Passwords do not match");
-      return;
-    }
-    console.log({ name, email, password });
+    await createUser(name, email, password, confirmPassword);
   };
 
   return (
@@ -114,11 +112,15 @@ const Register = () => {
                   onChange={handleConfirmPasswordChange}
                 />
               </div>
+              {errorMessage && (
+                <p className="text-error text-sm">{errorMessage}</p>
+              )}
               <button
                 type="submit"
                 className="w-full text-white bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                disabled={isLoading}
               >
-                Sign up
+                {isLoading ? "Signing up..." : "Sign up"}
               </button>
               <p className="text-sm font-light text-neutral">
                 Already have an account?{" "}

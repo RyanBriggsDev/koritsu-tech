@@ -9,7 +9,6 @@ import jwt from "jsonwebtoken";
 export const login = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
-    console.log(email, password);
 
     // Take email and look up user
     const data: User[] = await db

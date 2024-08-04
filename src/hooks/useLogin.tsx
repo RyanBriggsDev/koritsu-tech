@@ -27,7 +27,6 @@ export function useLogin(): [
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Login successful:", data);
 
         const expiryTime = new Date().getTime() + 24 * 60 * 60 * 1000;
         localStorage.setItem(

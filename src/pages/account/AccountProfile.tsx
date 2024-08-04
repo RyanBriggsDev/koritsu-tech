@@ -3,7 +3,6 @@ import ProtectedRoute from "../../components/functional/ProtectedRoute";
 
 function AccountProfile() {
   const { state } = useAuth();
-  console.log(state.user);
 
   return (
     <ProtectedRoute>

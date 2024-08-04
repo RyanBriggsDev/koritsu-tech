@@ -5,7 +5,7 @@ import { InferSelectModel, InferInsertModel, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/libsql";
 
 const createId = () => {
-  return Math.floor(Math.random() * 100).toString();
+  return Math.floor(Math.random() * 2947593022047394).toString();
 };
 
 const client = createClient({

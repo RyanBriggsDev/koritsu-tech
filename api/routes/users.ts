@@ -52,7 +52,7 @@ export const login = async (req: Request, res: Response) => {
 // register
 export const register = async (req: Request, res: Response) => {
   try {
-    const { email, password, confirmPassword } = req.body;
+    const { name, email, password, confirmPassword } = req.body;
     // Check if user exists
     if (password != confirmPassword) {
       return res.status(400).json({ error: "Passwords do not match" });
@@ -60,7 +60,7 @@ export const register = async (req: Request, res: Response) => {
     const hashed = bcrypt.hashSync(password, 10);
     const data: User[] = await db
       .insert(users)
-      .values({ email, password: hashed })
+      .values({ name, email, password: hashed })
       .returning();
     return res.json(data[0]);
   } catch (error) {

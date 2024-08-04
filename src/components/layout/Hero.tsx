@@ -4,15 +4,16 @@ import { useAuth } from "../../contexts/AuthContext";
 function Hero() {
   const { state } = useAuth();
   return (
-    <div className="hero bg-base-200 min-h-screen">
-      <div className="hero-content text-center">
-        <div className="max-w-md">
-          <h1 className="text-5xl font-bold">Koritsu.tech</h1>
-          <p className="py-6 max-w-1/2">
-            The Heartbeat of High-Performing Agencies. Unifying Clients, Teams,
-            and Workflows. Powering Growth Through Seamless Integration.
+    <div className="hero items-center bg-[url('https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp')] min-h-screen">
+      <div className="hero-overlay bg-opacity-60"></div>
+      <div className="hero-content w-full justify-start max-w-[1440px] justify-self-start text-neutral-content">
+        <div className="max-w-md bg-neutral rounded-xl p-5">
+          <h1 className="mb-5 text-5xl font-bold">Koritsu</h1>
+          <p className="mb-5">
+            Providing a centralised information repository for teams and organisations.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center items-center">
+          <div className="flex gap-2">
+
             {state.isAuthenticated ? (
               <Button to="/account" className="btn btn-primary">
                 View your Dashboard

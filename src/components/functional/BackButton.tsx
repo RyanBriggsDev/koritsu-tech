@@ -9,7 +9,10 @@ const BackButton: React.FC = () => {
 
   const handleBackClick = () => {
     if (path === "/") return;
-
+    if (path === "/account/login") {
+      navigate("/");
+      return;
+    }
     const segments = path.split("/").filter(Boolean);
     if (segments.length > 1) {
       segments.pop();
